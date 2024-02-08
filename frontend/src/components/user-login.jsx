@@ -58,7 +58,7 @@ export default function UserLogin() {
                                 Contraseña
                             </label>
                             <div className="text-sm">
-                                <Link to="/recover-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                <Link to="recover" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </div>

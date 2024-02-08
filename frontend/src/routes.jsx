@@ -1,23 +1,36 @@
 import {
     Routes, Route
 } from 'react-router-dom';
-import UserLogin from './components/user-login';
-import UserRegister from './components/user-register';
-import ErrorPage from './components/error-page';
-import RecoverPassword from './components/recover-password';
+import { lazy, Suspense } from 'react';
+export const RecoverPassword = lazy(() => import('./components/recover-password'));
+export const UserLogin = lazy(() => import('./components/user-login'));
+export const UserRegister = lazy(() => import('./components/user-register'));
+export const ErrorPage = lazy(() => import('./components/error-page'));
 
-const RoutingModule = () => {
+
+export default function RoutingModule() {
     return (
         <>
             <Routes>
-                <Route path="/" element={<UserLogin />} />
-                <Route path="*" element={<ErrorPage />} />
-                <Route path="/register" element={<UserRegister />} />
-                <Route path="/recover-password" element={<RecoverPassword />} />
+                <Route
+                    path="/"
+                    element={<UserLogin />}
+                />
+                <Route
+                    path="register"
+                    element={<UserRegister />}
+                />
+
+                <Route
+                    path="recover"
+                    element={<RecoverPassword />}
+                />
+
+                <Route
+                    path="*"
+                    element={<ErrorPage />}
+                />
             </Routes >
         </>
     );
-};
-
-export default RoutingModule;
-
+}
