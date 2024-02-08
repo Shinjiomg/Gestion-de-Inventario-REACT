@@ -1,2 +1,2 @@
 # REACT-Project
- Portafolio de Desarrollador Web
+ Sistema de control de inventarios
