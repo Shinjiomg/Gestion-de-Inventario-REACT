@@ -18,7 +18,7 @@ export default function RecoverPassword() {
             setSuccessMessage('Se ha enviado un correo electrónico para restablecer la contraseña.');
             setError('');
             setTimeout(() => {
-                navigate('/login');
+                navigate('/');
             }, 3000);
         } catch (error) {
             // Error al enviar el correo electrónico de restablecimiento de contraseña
