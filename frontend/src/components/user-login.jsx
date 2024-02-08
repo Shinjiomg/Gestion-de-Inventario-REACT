@@ -18,7 +18,7 @@ export default function UserLogin() {
             const auth = getAuth(app);
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             console.log(userCredential.user);
-            navigate('/register');
+            navigate('/test');
         } catch (error) {
             setError(message);
         } finally {
@@ -27,9 +27,9 @@ export default function UserLogin() {
     };
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
-            <div className="sm:mx-auto sm:w-full sm:max-w-sm">
+            <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
                 <h1 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
-                    Bienvenido
+                    ¡Bienvenido!
                 </h1>
             </div>
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
@@ -44,6 +44,7 @@ export default function UserLogin() {
                                 name="email"
                                 type="email"
                                 autoComplete="email"
+                                placeholder="name@email.com"
                                 required
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
@@ -57,7 +58,7 @@ export default function UserLogin() {
                                 Contraseña
                             </label>
                             <div className="text-sm">
-                                <Link to="/forgotPassword" className="font-semibold text-indigo-600 hover:text-indigo-500">
+                                <Link to="/recover-password" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </div>
@@ -67,6 +68,7 @@ export default function UserLogin() {
                                 id="password"
                                 name="password"
                                 type="password"
+                                placeholder="******"
                                 autoComplete="current-password"
                                 required
                                 value={password}
