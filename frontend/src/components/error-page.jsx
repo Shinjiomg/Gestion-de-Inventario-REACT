@@ -9,7 +9,7 @@ export default function ErrorPage() {
         </div>
 
         <div class="relative w-full mt-12 lg:w-1/2 lg:mt-0">
-          <img class="w-full max-w-lg lg:mx-auto" src="https://merakiui.com/images/components/illustration.svg" alt="" />
+          <img class="w-full max-w-lg lg:mx-auto" src="https://merakiui.com/images/components/illustration.svg" alt="not-found" />
         </div>
       </div>
     </section>
