@@ -15,11 +15,11 @@ export default function RoutingModule() {
             <Routes>
                 <Route
                     path="/"
-                    element={<IndexPage />}
+                    element={<UserLogin />}
                 />
                 <Route
-                    path="login"
-                    element={<UserLogin />}
+                    path="dashboard"
+                    element={<IndexPage />}
                 />
                 <Route
                     path="register"

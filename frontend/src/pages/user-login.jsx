@@ -19,7 +19,7 @@ export default function UserLogin() {
         try {
             const auth = getAuth(app);
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
-            navigate('/test');
+            navigate('/dashboard');
         } catch (error) {
             setError(message);
         } finally {
