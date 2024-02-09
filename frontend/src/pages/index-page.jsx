@@ -1,9 +1,9 @@
 import { Dialog } from '@headlessui/react'
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
-import {Navbar, NavbarContent, NavbarItem, Link} from "@nextui-org/react";
-import {Avatar, AvatarGroup, AvatarIcon} from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import './index-page.css'
 import { userIcon, receiptIcon, statisticsIcon, shopingIcon, registerIcon } from '../assets/icons';
+import { Button } from "@nextui-org/react";
 
 
 export default function IndexPage() {
@@ -17,24 +17,24 @@ export default function IndexPage() {
                 react
                 </div>
                 <hr />
-                <div className='inventario flex flex-col items-start  pb-4'>
+                <div className='inventario flex flex-col pb-4'>
                     <p className='pb-2 pt-6'>inventario</p>
-                    <span><button>{ statisticsIcon } estadisticas</button></span>
-                    <span><button>{ statisticsIcon } gestionar inventario</button></span>
+                    <Button className='nextButton'>{ statisticsIcon }estadisticas</Button>
+                    <Button className='nextButton'>{ statisticsIcon }gestionar inventario</Button>
                 </div>
-                <div className='ventas flex flex-col items-start pb-4'>
+                <div className='ventas flex flex-col pb-4'>
                     <p className='pb-2'>gestion de ventas</p>
-                    <span><button>{ receiptIcon } factura de venta</button></span>
+                    <Button className='nextButton'>{ receiptIcon }factura de venta</Button>
                 </div>
-                <div className='usuarios flex flex-col items-start pb-4'>
+                <div className='usuarios flex flex-col pb-4'>
                     <p className='pb-2'>gestion de usuarios</p>
-                    <span><button>{ userIcon } usuarios</button></span>
+                    <Button className='nextButton'>{ userIcon }gestion de usuarios</Button>
                 </div>
-                <div className='compras flex flex-col items-start pb-4'>
+                <div className='compras flex flex-col pb-4'>
                     <p className='pb-2'>gestion de compras</p>
-                    <span><button>{ shopingIcon } compras</button></span>
-                    <span><button>{ receiptIcon } factura de compras</button></span>
-                    <span><button>{ registerIcon } registro de gastos</button></span>
+                    <Button className='nextButton'>{ shopingIcon }compras</Button>
+                    <Button className='nextButton'>{ receiptIcon }factura de compras</Button>
+                    <Button className='nextButton'>{ registerIcon }registro de gastos</Button>
                 </div>
             </div>
         </>
