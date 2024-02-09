@@ -8,14 +8,13 @@ import { HelmetProvider } from 'react-helmet-async/lib';
 import LoadingIndicator from './pages/elements/LoadingAnimation';
 
 const delayLoading = () => {
-  return new Promise(resolve => setTimeout(resolve, 2000)); // 2000 milisegundos (2 segundos)
+  return new Promise(resolve => setTimeout(resolve, 1000));
 };
 
 const DelayLoader = () => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simula la carga demorada
     delayLoading().then(() => {
       setIsLoading(false);
     });

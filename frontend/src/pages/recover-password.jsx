@@ -11,12 +11,12 @@ export default function RecoverPassword() {
     const navigate = useNavigate();
     const message = 'Las credenciales no son válidas'
     const [loading, setLoading] = useState(false);
+    const auth = getAuth(app);
 
 
     const handleResetPassword = async () => {
         setLoading(true);
         try {
-            const auth = getAuth(app);
             await sendPasswordResetEmail(auth, email);
             setSuccessMessage('Se ha enviado un correo electrónico para restablecer la contraseña. Volviendo a la pantalla de carga');
             setError('');
@@ -24,10 +24,20 @@ export default function RecoverPassword() {
                 navigate('/');
             }, 2000);
         } catch (error) {
-            // Error al enviar el correo electrónico de restablecimiento de contraseña
-            console.error("Error al enviar el correo electrónico de restablecimiento de contraseña:", error);
-            setError(message);
-        } finally {
+
+            switch (error.code) {
+                case 'auth/user-not-found':
+                    setError('El correo electrónico proporcionado no está registrado.');
+                    break;
+                case 'auth/invalid-email':
+                    setError('Correo electrónico no válido.');
+                    break;
+                case 'auth/missing-email':
+                    setError('Escribe tu correo electrónico.');
+                    break
+                default:
+                    setError(error.message);
+            }
             setLoading(false);
         }
     };

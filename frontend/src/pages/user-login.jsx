@@ -10,18 +10,50 @@ export default function UserLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const message = 'Las credenciales no son válidas'
     const [loading, setLoading] = useState(false);
+    const auth = getAuth(app);
 
-    const handleSignIn = async (e) => {
-        e.preventDefault();
+
+    const isEmailValid = (email) => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const handleSignIn = async () => {
         setLoading(true);
         try {
-            const auth = getAuth(app);
-            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            // if (!isEmailValid(email)) {
+            //     setError('Ingresa un correo electrónico válido.');
+            //     setLoading(false);
+            //     return;
+            // }
+            await signInWithEmailAndPassword(auth, email, password);
             navigate('/dashboard');
         } catch (error) {
-            setError(message);
+            console.log(error)
+            switch (error.code) {
+                case 'auth/invalid-email':
+                    setError('Correo electrónico no válido.');
+                    break;
+                case 'auth/user-not-found':
+                    setError('Correo electrónico no registrado.');
+                    break;
+                case 'auth/wrong-password':
+                    setError('Contraseña incorrecta.');
+                    break;
+                case 'auth/user-disabled':
+                    setError('Tu cuenta ha sido desactivada.');
+                    break;
+                case 'auth/missing-password':
+                    setError('Escribe tu contraseña.');
+                    break
+                case 'auth/missing-email':
+                    setError('Escribe tu correo electrónico.');
+                    break
+                default:
+                    setError('Credenciales no válidas.');
+            }
+
         } finally {
             setLoading(false);
         }
@@ -35,7 +67,7 @@ export default function UserLogin() {
                 </h1>
             </div>
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
-                <form className="space-y-6" method='post' onSubmit={handleSignIn}>
+                <form className="space-y-6">
                     <div>
                         <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
                             <Input
@@ -74,7 +106,8 @@ export default function UserLogin() {
                     </div>
                     <div>
                         <Button
-                            type="submit"
+                            type="button"
+                            onClick={handleSignIn}
                             color='primary'
                             variant="ghost"
                             className="flex w-full justify-center rounded-md"

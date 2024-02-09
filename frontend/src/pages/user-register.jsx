@@ -11,19 +11,30 @@ export default function UserRegister() {
     const [error, setError] = useState('');
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
+    const auth = getAuth(app);
 
     const handleRegister = async () => {
         setLoading(true);
         try {
-            const auth = getAuth(app);
             await createUserWithEmailAndPassword(auth, email, password);
             setSuccessMessage('Cuenta creada exitosamente.');
-            setError('');
             setTimeout(() => {
                 navigate('/');
-            }, 3000);
+            }, 1000);
         } catch (error) {
-            setError(error.message);
+            switch (error.code) {
+                case 'auth/email-already-in-use':
+                    setError('Correo electrónico ya registrado.');
+                    break;
+                case 'auth/weak-password':
+                    setError('La contraseña debe contener como mínimo 6 carácteres.');
+                    break;
+                case 'auth/invalid-email':
+                    setError('Correo electrónico no válido.');
+                    break;
+                default:
+                    setError(error.message);
+            }
         } finally {
             setLoading(false);
         }
