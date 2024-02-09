@@ -1,9 +1,6 @@
 import { Avatar, Button } from "@nextui-org/react";
 import { userIcon, receiptIcon, statisticsIcon, shopingIcon, registerIcon } from '../../assets/icons';
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { getAuth, signOut } from 'firebase/auth';
-import { app } from '../../../firebase'
+import React from 'react';
 import '../menu.css'
 
 export default function Menu() {
