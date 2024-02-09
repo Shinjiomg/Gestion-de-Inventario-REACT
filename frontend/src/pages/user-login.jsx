@@ -52,7 +52,6 @@ export default function UserLogin() {
 
                             <div className="text-sm">
                                 <Link href="recover"
-                                    isBlock
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </Link>
@@ -63,7 +62,7 @@ export default function UserLogin() {
                                 id="password"
                                 name="password"
                                 type="password"
-                                placeholder="******"
+                                label="Contraseña"
                                 autoComplete="current-password"
                                 required
                                 value={password}
@@ -75,8 +74,9 @@ export default function UserLogin() {
                         <Button
                             type="submit"
                             color='primary'
+                            variant="ghost"
                             className="flex w-full justify-center rounded-md"
-                            disabled={loading} // Deshabilita el botón durante la carga
+                            isLoading={loading}
                         >
                             {loading ? 'Cargando...' : 'Iniciar Sesión'} {/* Cambia el texto del botón durante la carga */}
                         </Button>
@@ -87,7 +87,6 @@ export default function UserLogin() {
                     ¿No tienes cuenta?{' '}
                     <Link
                         href="/register"
-                        isBlock
                     >
                         Regístrate aquí
                     </Link>
