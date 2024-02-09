@@ -11,7 +11,7 @@ export default function UserLogin() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
 
@@ -52,6 +52,8 @@ export default function UserLogin() {
                 case 'auth/missing-email':
                     setError('Escribe tu correo electrónico.');
                     break
+                case 'auth/too-many-requests':
+                    setError('Haz realizado demasiados intentos, inténtalo de nuevo más tarde o también puedes restaurar tu contraseña desde "¿Olvidaste tu contraseña?".')
                 default:
                     setError('Credenciales no válidas.');
             }
@@ -59,7 +61,7 @@ export default function UserLogin() {
             setLoading(false);
         }
     };
-    if (loading || !authChecked) {
+    if (!authChecked) {
         return <LoadingAnimation />;
     }
     return (

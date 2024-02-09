@@ -11,7 +11,7 @@ export default function UserRegister() {
     const [successMessage, setSuccessMessage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
 
@@ -52,7 +52,7 @@ export default function UserRegister() {
             setLoading(false);
         }
     };
-    if (loading || !authChecked) {
+    if (!authChecked) {
         return <LoadingAnimation />;
     }
     return (
@@ -100,7 +100,7 @@ export default function UserRegister() {
                             onClick={handleRegister}
                             isLoading={loading}
                         >
-                            Registrarse
+                            {loading ? 'Registrando...' : 'Registrarse'} {/* Cambia el texto del botón durante la carga */}
                         </Button>
                         {error && <p className="text-red-500">{error}</p>}
                         {successMessage && <p className="text-green-500">{successMessage}</p>}

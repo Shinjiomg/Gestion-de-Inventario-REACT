@@ -10,8 +10,7 @@ export default function RecoverPassword() {
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
-    const message = 'Las credenciales no son válidas'
-    const [loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(false);
     const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
 
@@ -36,7 +35,6 @@ export default function RecoverPassword() {
                 navigate('/');
             }, 2000);
         } catch (error) {
-
             switch (error.code) {
                 case 'auth/user-not-found':
                     setError('El correo electrónico proporcionado no está registrado.');
@@ -50,10 +48,11 @@ export default function RecoverPassword() {
                 default:
                     setError(error.message);
             }
+        } finally {
             setLoading(false);
         }
     };
-    if (loading || !authChecked) {
+    if (!authChecked) {
         return <LoadingAnimation />;
     }
     return (
