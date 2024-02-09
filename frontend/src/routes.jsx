@@ -15,9 +15,9 @@ export default function RoutingModule() {
             <Routes>
                 <Route
                     path="/"
-                    element={<IndexPage />}
+                    element={<UserLogin />}
                 />
-                 <Route
+                <Route
                     path="login"
                     element={<UserLogin />}
                 />
