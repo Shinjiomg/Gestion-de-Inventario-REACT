@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Input, Link } from "@nextui-org/react";
-import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
-import app from '../../firebase';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { app } from '../../firebase';
 import { useNavigate } from "react-router-dom";
+import LoadingAnimation from './elements/LoadingAnimation'
 
 export default function UserRegister() {
     const [email, setEmail] = useState('');
@@ -10,8 +11,20 @@ export default function UserRegister() {
     const [successMessage, setSuccessMessage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setLoading(false);
+            setAuthChecked(true);
+            if (user) {
+                navigate('/dashboard');
+            }
+        });
+        return () => unsubscribe();
+    }, [auth, navigate]);
 
     const handleRegister = async () => {
         setLoading(true);
@@ -39,7 +52,9 @@ export default function UserRegister() {
             setLoading(false);
         }
     };
-
+    if (loading || !authChecked) {
+        return <LoadingAnimation />;
+    }
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12">
             <div className="g-6 flex h-full flex-wrap items-center justify-center ">

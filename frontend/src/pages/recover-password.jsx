@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import app from '../../firebase'
-import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
+import { app } from '../../firebase'
+import { getAuth, sendPasswordResetEmail, onAuthStateChanged } from 'firebase/auth';
 import { Button, Input, Link } from '@nextui-org/react';
+import LoadingAnimation from './elements/LoadingAnimation'
 
 export default function RecoverPassword() {
     const [email, setEmail] = useState('');
@@ -10,9 +11,20 @@ export default function RecoverPassword() {
     const [successMessage, setSuccessMessage] = useState('');
     const navigate = useNavigate();
     const message = 'Las credenciales no son válidas'
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
 
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setLoading(false);
+            setAuthChecked(true);
+            if (user) {
+                navigate('/dashboard');
+            }
+        });
+        return () => unsubscribe();
+    }, [auth, navigate]);
 
     const handleResetPassword = async () => {
         setLoading(true);
@@ -41,6 +53,9 @@ export default function RecoverPassword() {
             setLoading(false);
         }
     };
+    if (loading || !authChecked) {
+        return <LoadingAnimation />;
+    }
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <div className="w-full p-6 md:mt-0 sm:max-w-md">

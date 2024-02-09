@@ -1,32 +1,34 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import app from '../../firebase'
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { app } from '../../firebase';
 import { Button, Input } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
+import LoadingAnimation from './elements/LoadingAnimation'
 
 export default function UserLogin() {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
-    const [loading, setLoading] = useState(false);
+    const [loading, setLoading] = useState(true);
+    const [authChecked, setAuthChecked] = useState(false);
     const auth = getAuth(app);
 
-
-    const isEmailValid = (email) => {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return emailRegex.test(email);
-    };
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            setLoading(false);
+            setAuthChecked(true);
+            if (user) {
+                navigate('/dashboard');
+            }
+        });
+        return () => unsubscribe();
+    }, [auth, navigate]);
 
     const handleSignIn = async () => {
         setLoading(true);
         try {
-            // if (!isEmailValid(email)) {
-            //     setError('Ingresa un correo electrónico válido.');
-            //     setLoading(false);
-            //     return;
-            // }
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/dashboard');
         } catch (error) {
@@ -53,12 +55,13 @@ export default function UserLogin() {
                 default:
                     setError('Credenciales no válidas.');
             }
-
         } finally {
             setLoading(false);
         }
     };
-
+    if (loading || !authChecked) {
+        return <LoadingAnimation />;
+    }
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm ">

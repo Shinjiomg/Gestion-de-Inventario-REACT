@@ -1,17 +1,43 @@
-export default function ErrorPage() {
-  return (
-    <section class="bg-white dark:bg-gray-900 ">
-      <div class="container min-h-screen px-6 py-12 mx-auto lg:flex lg:items-center lg:gap-12">
-        <div class="wf-ull lg:w-1/2">
-          <p class="text-sm font-medium text-blue-500 dark:text-blue-400">error 404</p>
-          <h1 class="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Página no encontrada</h1>
-          <p class="mt-4 text-gray-500 dark:text-gray-400">Lo sentimos, la página que estás buscando no existe.</p>
-        </div>
+import React from "react";
+import { useNavigate } from "react-router-dom";
+import { getAuth } from 'firebase/auth';
+import { app } from '../../firebase';
+import { Button } from "@nextui-org/button";
+import LoadingAnimation from './elements/LoadingAnimation'
+import NotFoundAnimation from './elements/not-found-animation'
 
-        <div class="relative w-full mt-12 lg:w-1/2 lg:mt-0">
-          <img class="w-full max-w-lg lg:mx-auto" src="https://merakiui.com/images/components/illustration.svg" alt="not-found" />
-        </div>
+export default function ErrorPage() {
+  const navigate = useNavigate();
+  const auth = getAuth(app);
+
+  const handleReturnClick = () => {
+    const currentUser = auth.currentUser;
+    if (currentUser) {
+      navigate('/dashboard');
+    } else {
+      navigate('/');
+    }
+  };
+
+  return (
+    <div className="container min-h-screen mx-auto flex flex-col items-center justify-center lg:flex-row">
+      <div className="w-full lg:w-1/2 text-center">
+        <p className="text-sm font-medium text-blue-500 dark:text-blue-400">error 404</p>
+        <h1 className="mt-3 text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">Página no encontrada</h1>
+        <p className="mt-4 text-gray-500 dark:text-gray-400">Lo sentimos, la página que estás buscando no existe.</p>
+        <p className="mt-5 text-md text-gray-500">
+          <Button onClick={handleReturnClick} type="button"
+            color='primary'
+            variant="ghost"
+            className="mx-auto">
+            Volver <span aria-hidden="true">&rarr;</span>
+          </Button>
+        </p>
       </div>
-    </section>
+      <div>
+        <NotFoundAnimation />
+      </div>
+    </div>
+
   );
 }

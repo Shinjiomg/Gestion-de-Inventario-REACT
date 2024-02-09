@@ -33,29 +33,12 @@ export default function RoutingModule() {
         <>
             <Suspense fallback={<LoadingIndicator />}>
                 <Routes>
-                    <Route
-                        path="/"
-                        element={<UserLogin />}
-                    />
-                    <Route
-                        path="dashboard"
-                        element={<IndexPage />}
-                    />
-                    <Route
-                        path="register"
-                        element={<UserRegister />}
-                    />
-
-                    <Route
-                        path="recover"
-                        element={<RecoverPassword />}
-                    />
-
-                    <Route
-                        path="*"
-                        element={<ErrorPage />}
-                    />
-                </Routes >
+                    <Route path="/" element={<UserLogin />} />
+                    <Route path="/dashboard" element={<IndexPage />} />
+                    <Route path="/register" element={<UserRegister />} />
+                    <Route path="/recover" element={<RecoverPassword />} />
+                    <Route path="*" element={<ErrorPage />} />
+                </Routes>
             </Suspense>
         </>
     );

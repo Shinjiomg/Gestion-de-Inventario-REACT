@@ -1,5 +1,6 @@
 import { initializeApp } from 'firebase/app';
 import { getAnalytics } from "firebase/analytics";
+import { getAuth, browserLocalPersistence, setPersistence } from 'firebase/auth';
 const firebaseConfig = {
     apiKey: "AIzaSyDFAhvp0q3N8pv0hpB7l4iS2_0-As0QPGQ",
     authDomain: "sistema-de-inventario-7d186.firebaseapp.com",
@@ -14,6 +15,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
-export default app;
+const auth = getAuth(app);
+setPersistence(auth, browserLocalPersistence)
+    .then(() => {
+        console.log('Persistencia de sesión configurada correctamente');
+    })
+    .catch((error) => {
+        console.error('Error al configurar la persistencia de sesión:', error);
+    });
+export { app, analytics, auth };
 
 
