@@ -42,7 +42,7 @@ export default function UserLogin() {
                                 type="email"
                                 label="Correo electrónico"
                                 autoComplete="email"
-                                required
+                                isRequired
                                 onChange={(e) => setEmail(e.target.value)}
                             />
                         </div>
@@ -51,7 +51,7 @@ export default function UserLogin() {
                         <div className="flex items-center justify-end">
 
                             <div className="text-sm">
-                                <Link href="recover"
+                                <Link href="/recover"
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </Link>
@@ -64,7 +64,7 @@ export default function UserLogin() {
                                 type="password"
                                 label="Contraseña"
                                 autoComplete="current-password"
-                                required
+                                isRequired
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                             />

@@ -48,7 +48,7 @@ export default function RecoverPassword() {
                                 type="email"
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                required
+                                isRequired
                             />
                         </div>
                     </div>
