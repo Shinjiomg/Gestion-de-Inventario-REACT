@@ -64,7 +64,7 @@ export default function RecoverPassword() {
                     </Button>
                     {error && <p className="text-red-500">{error}</p>}
                     {successMessage && <p className="text-green-500">{successMessage}</p>}
-                    <div className="text-sm text-end">
+                    <div className="text-sm text-end m-0">
                         <Link href="/">
                             <span aria-hidden="true" />
                             Regresar <span aria-hidden="true">&rarr;</span>
