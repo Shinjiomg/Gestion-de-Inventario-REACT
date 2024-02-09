@@ -1,29 +1,31 @@
 import React, { useState } from "react";
 import { Button, Input, Link } from "@nextui-org/react";
-import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail  } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, fetchSignInMethodsForEmail } from 'firebase/auth';
 import app from '../../firebase';
 import { useNavigate } from "react-router-dom";
 
 export default function UserRegister() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const [successMessage, setSuccessMessage] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     const handleRegister = async () => {
+        setLoading(true);
         try {
             const auth = getAuth(app);
-            const signInMethods = await fetchSignInMethodsForEmail(auth, email);
-            if (signInMethods.length > 0) {
-                throw new Error('El correo electrónico ya está registrado');
-            }
             await createUserWithEmailAndPassword(auth, email, password);
+            setSuccessMessage('Cuenta creada exitosamente.');
             setError('');
             setTimeout(() => {
                 navigate('/');
             }, 3000);
         } catch (error) {
             setError(error.message);
+        } finally {
+            setLoading(false);
         }
     };
 
@@ -70,10 +72,12 @@ export default function UserRegister() {
                             variant="ghost"
                             className="flex w-full justify-center rounded-md"
                             onClick={handleRegister}
+                            isLoading={loading}
                         >
                             Registrarse
                         </Button>
                         {error && <p className="text-red-500">{error}</p>}
+                        {successMessage && <p className="text-green-500">{successMessage}</p>}
                         <div className="text-md text-end pt-3">
                             <Link href="/">
                                 <span aria-hidden="true" />
