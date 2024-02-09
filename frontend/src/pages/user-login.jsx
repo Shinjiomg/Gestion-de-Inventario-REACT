@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import app from '../../firebase'
+import { Button, Input } from '@nextui-org/react';
 
 export default function UserLogin() {
     const navigate = useNavigate();
@@ -35,36 +36,29 @@ export default function UserLogin() {
             <div className="mt-5 sm:mx-auto sm:w-full sm:max-w-sm">
                 <form className="space-y-6" method='post' onSubmit={handleSignIn}>
                     <div>
-                        <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
-                            Correo electrónico
-                        </label>
-                        <div className="mt-2">
-                            <input
+                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+                            <Input
                                 id="email"
                                 name="email"
                                 type="email"
+                                label="Correo electrónico"
                                 autoComplete="email"
-                                placeholder="name@email.com"
                                 required
-                                value={email}
                                 onChange={(e) => setEmail(e.target.value)}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>
                     <div>
-                        <div className="flex items-center justify-between">
-                            <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
-                                Contraseña
-                            </label>
+                        <div className="flex items-center justify-end">
+
                             <div className="text-sm">
                                 <Link to="recover" className="font-semibold text-indigo-600 hover:text-indigo-500">
                                     ¿Olvidaste tu contraseña?
                                 </Link>
                             </div>
                         </div>
-                        <div className="mt-2">
-                            <input
+                        <div className="flex w-full flex-wrap md:flex-nowrap gap-4">
+                            <Input
                                 id="password"
                                 name="password"
                                 type="password"
@@ -73,19 +67,18 @@ export default function UserLogin() {
                                 required
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
-                                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                             />
                         </div>
                     </div>
                     <div>
-                        <button
+                        <Button
                             type="submit"
-                            variant="outline"
-                            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-600"
+                            color='primary'
+                            className="flex w-full justify-center rounded-md"
                             disabled={loading} // Deshabilita el botón durante la carga
                         >
                             {loading ? 'Cargando...' : 'Iniciar Sesión'} {/* Cambia el texto del botón durante la carga */}
-                        </button>
+                        </Button>
                     </div>
                     {error && <p className="text-red-500">{error}</p>}
                 </form>
