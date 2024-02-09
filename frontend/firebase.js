@@ -17,12 +17,6 @@ const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 const auth = getAuth(app);
 setPersistence(auth, browserLocalPersistence)
-    .then(() => {
-        console.log('Persistencia de sesión configurada correctamente');
-    })
-    .catch((error) => {
-        console.error('Error al configurar la persistencia de sesión:', error);
-    });
 export { app, analytics, auth };
 
 

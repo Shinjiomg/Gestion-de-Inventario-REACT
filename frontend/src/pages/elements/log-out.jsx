@@ -7,6 +7,7 @@ import { Button } from '@nextui-org/react';
 export default function LogoutButton() {
     const navigate = useNavigate();
     const auth = getAuth(app);
+    const [error, setError] = useState(null);
     const [loading, setLoading] = useState(false);
 
     const handleSignOut = async () => {
@@ -17,7 +18,7 @@ export default function LogoutButton() {
                 navigate('/');
             }, 2000);
         } catch (error) {
-            console.error('Error al cerrar sesión:', error);
+            setError(error.message)
         } finally {
             setLoading(false);
         }

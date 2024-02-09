@@ -32,7 +32,6 @@ export default function UserLogin() {
             await signInWithEmailAndPassword(auth, email, password);
             navigate('/dashboard');
         } catch (error) {
-            console.log(error)
             switch (error.code) {
                 case 'auth/invalid-email':
                     setError('Correo electrónico no válido.');
