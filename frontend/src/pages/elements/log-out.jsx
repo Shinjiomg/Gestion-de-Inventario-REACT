@@ -14,9 +14,7 @@ export default function LogoutButton() {
         setLoading(true);
         try {
             await signOut(auth);
-            setTimeout(() => {
-                navigate('/');
-            }, 2000);
+            navigate('/');
         } catch (error) {
             setError(error.message)
         } finally {

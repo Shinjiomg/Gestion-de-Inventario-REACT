@@ -20,7 +20,9 @@ export default function UserRegister() {
             setLoading(false);
             setAuthChecked(true);
             if (user) {
-                navigate('/dashboard');
+                setTimeout(() => {
+                    navigate('/');
+                }, 3000);
             }
         });
         return () => unsubscribe();
@@ -30,10 +32,10 @@ export default function UserRegister() {
         setLoading(true);
         try {
             await createUserWithEmailAndPassword(auth, email, password);
-            setSuccessMessage('Cuenta creada exitosamente.');
+            setSuccessMessage('Cuenta creada exitosamente, ingresando al dashboard.');
             setTimeout(() => {
                 navigate('/');
-            }, 1000);
+            }, 3000);
         } catch (error) {
             switch (error.code) {
                 case 'auth/email-already-in-use':
@@ -45,6 +47,12 @@ export default function UserRegister() {
                 case 'auth/invalid-email':
                     setError('Correo electrónico no válido.');
                     break;
+                case 'auth/missing-password':
+                    setError('Escribe una contraseña.');
+                    break
+                case 'auth/missing-email':
+                    setError('Escribe un correo electrónico.');
+                    break
                 default:
                     setError(error.message);
             }
