@@ -4,7 +4,6 @@ import app from '../../firebase'
 import { getAuth, sendPasswordResetEmail } from 'firebase/auth';
 import { Button, Input, Link } from '@nextui-org/react';
 
-
 export default function RecoverPassword() {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
@@ -19,11 +18,11 @@ export default function RecoverPassword() {
         try {
             const auth = getAuth(app);
             await sendPasswordResetEmail(auth, email);
-            setSuccessMessage('Se ha enviado un correo electrónico para restablecer la contraseña.');
+            setSuccessMessage('Se ha enviado un correo electrónico para restablecer la contraseña. Volviendo a la pantalla de carga');
             setError('');
             setTimeout(() => {
                 navigate('/');
-            }, 3000);
+            }, 2000);
         } catch (error) {
             // Error al enviar el correo electrónico de restablecimiento de contraseña
             console.error("Error al enviar el correo electrónico de restablecimiento de contraseña:", error);
@@ -60,7 +59,7 @@ export default function RecoverPassword() {
                         className="flex w-full justify-center rounded-md"
                         isLoading={loading}
                     >
-                        {loading ? 'Cargando...' : 'Restablecer contraseña'} {/* Cambia el texto del botón durante la carga */}
+                        {loading ? 'Enviando correo...' : 'Restablecer contraseña'} {/* Cambia el texto del botón durante la carga */}
                     </Button>
                     {error && <p className="text-red-500">{error}</p>}
                     {successMessage && <p className="text-green-500">{successMessage}</p>}
