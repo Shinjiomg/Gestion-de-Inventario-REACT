@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import app from '../../firebase'
-import { Button, Input, Link } from '@nextui-org/react';
+import { Button, Input } from '@nextui-org/react';
+import { Link } from 'react-router-dom';
 
 export default function UserLogin() {
     const navigate = useNavigate();
@@ -25,6 +26,7 @@ export default function UserLogin() {
             setLoading(false);
         }
     };
+
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8">
             <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
@@ -50,8 +52,8 @@ export default function UserLogin() {
                     <div>
                         <div className="flex items-center justify-end">
 
-                            <div className="text-sm">
-                                <Link href="/recover"
+                            <div className="mt-5 text-center text-md text-gray-500">
+                                <Link to="/recover" className="font-normal text-blue-600 hover:text-indigo-500"
                                 >
                                     ¿Olvidaste tu contraseña?
                                 </Link>
@@ -85,8 +87,8 @@ export default function UserLogin() {
                 </form>
                 <p className="mt-5 text-center text-md text-gray-500">
                     ¿No tienes cuenta?{' '}
-                    <Link
-                        href="/register"
+                    <Link className="font-normal text-blue-600 hover:text-indigo-500"
+                        to="/register"
                     >
                         Regístrate aquí
                     </Link>
