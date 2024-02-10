@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { app } from '../../firebase';
 import { Button, Input } from '@nextui-org/react';
 import { Link } from 'react-router-dom';
@@ -20,7 +20,11 @@ export default function UserLogin() {
             setLoading(false);
             setAuthChecked(true);
             if (user) {
-                navigate('/dashboard');
+                if (user.emailVerified) {
+                    navigate('/dashboard');
+                } else {
+                    signOut(auth)
+                }
             }
         });
         return () => unsubscribe();
@@ -29,8 +33,13 @@ export default function UserLogin() {
     const handleSignIn = async () => {
         setLoading(true);
         try {
-            await signInWithEmailAndPassword(auth, email, password);
-            navigate('/dashboard');
+            const userCredential = await signInWithEmailAndPassword(auth, email, password);
+            const user = userCredential.user;
+            if (user.emailVerified) {
+                navigate('/dashboard'); // Redirige al usuario a la página de inicio de sesión si su correo electrónico está verificado
+            } else {
+                setError('Debes verificar tu correo electrónico antes de iniciar sesión.');
+            }
         } catch (error) {
             switch (error.code) {
                 case 'auth/invalid-email':

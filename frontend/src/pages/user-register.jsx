@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Link } from "@nextui-org/react";
-import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth';
 import { app } from '../../firebase';
 import { useNavigate } from "react-router-dom";
 import LoadingAnimation from './elements/LoadingAnimation'
@@ -19,10 +19,13 @@ export default function UserRegister() {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             setLoading(false);
             setAuthChecked(true);
-            if (user) {
-                setTimeout(() => {
+            if (user.emailVerified) {
+                navigate('/dashboard');
+            } else {
+                signOut(auth)
+                setTimeout(()=>{
                     navigate('/');
-                }, 3000);
+                },2000)
             }
         });
         return () => unsubscribe();
@@ -31,35 +34,36 @@ export default function UserRegister() {
     const handleRegister = async () => {
         setLoading(true);
         try {
+            await new Promise(resolve => setTimeout(resolve, 2000));
             await createUserWithEmailAndPassword(auth, email, password);
-            setSuccessMessage('Cuenta creada exitosamente, ingresando al dashboard.');
-            setTimeout(() => {
-                navigate('/');
-            }, 3000);
+            const user = auth.currentUser;
+            await sendEmailVerification(user);
+            setSuccessMessage('Cuenta creada exitosamente, revisa tu correo electrónico para verificar tu cuenta.');
         } catch (error) {
             switch (error.code) {
                 case 'auth/email-already-in-use':
                     setError('Correo electrónico ya registrado.');
                     break;
                 case 'auth/weak-password':
-                    setError('La contraseña debe contener como mínimo 6 carácteres.');
+                    setError('La contraseña debe contener como mínimo 6 caracteres.');
                     break;
                 case 'auth/invalid-email':
                     setError('Correo electrónico no válido.');
                     break;
                 case 'auth/missing-password':
                     setError('Escribe una contraseña.');
-                    break
+                    break;
                 case 'auth/missing-email':
                     setError('Escribe un correo electrónico.');
-                    break
+                    break;
                 default:
                     setError(error.message);
             }
         } finally {
-            setLoading(false);
+            setLoading(false); // Establecer loading en false aquí asegura que se desactive después de establecer successMessage o error
         }
     };
+
     if (!authChecked) {
         return <LoadingAnimation />;
     }
@@ -108,7 +112,7 @@ export default function UserRegister() {
                             onClick={handleRegister}
                             isLoading={loading}
                         >
-                            {loading ? 'Registrando...' : 'Registrarse'} {/* Cambia el texto del botón durante la carga */}
+                            {loading ? 'Registrando...' : 'Registrarse'}
                         </Button>
                         {error && <p className="text-red-500">{error}</p>}
                         {successMessage && <p className="text-green-500">{successMessage}</p>}
