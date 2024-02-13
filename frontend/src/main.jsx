@@ -11,23 +11,23 @@ const delayLoading = () => {
   return new Promise(resolve => setTimeout(resolve, 1000));
 };
 
-const DelayLoader = () => {
-  const [isLoading, setIsLoading] = useState(true);
+// const DelayLoader = () => {
+//   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    delayLoading().then(() => {
-      setIsLoading(false);
-    });
-  }, []);
-  return isLoading ? <LoadingIndicator /> : <RoutingModule />;
-};
+//   useEffect(() => {
+//     delayLoading().then(() => {
+//       setIsLoading(false);
+//     });
+//   }, []);
+//   return isLoading ? <LoadingIndicator /> : <RoutingModule />;
+// };
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <HelmetProvider>
     <BrowserRouter>
       <Suspense fallback={<LoadingIndicator />}>
         <NextUIProvider>
-          <DelayLoader />
+          <RoutingModule />
         </NextUIProvider>
       </Suspense>
     </BrowserRouter>
