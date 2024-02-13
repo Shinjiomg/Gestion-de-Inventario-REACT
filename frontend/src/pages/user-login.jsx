@@ -73,7 +73,7 @@ export default function UserLogin() {
         return <LoadingAnimation />;
     }
     return (
-        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 body-login" style={{background: "#3B3434"}}>
+        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 body-login" style={{background: "lightgray"}}>
             <div className="sm:mx-auto sm:w-full sm:max-w-sm ">
                 <p className="text-center text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
                     ¡Bienvenido!
