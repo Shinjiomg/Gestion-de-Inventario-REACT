@@ -33,7 +33,7 @@ export default function RecoverPassword() {
             setError('');
             setTimeout(() => {
                 navigate('/');
-            }, 2000);
+            }, 1000);
         } catch (error) {
             switch (error.code) {
                 case 'auth/user-not-found':

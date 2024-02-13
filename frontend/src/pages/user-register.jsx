@@ -25,7 +25,7 @@ export default function UserRegister() {
                 signOut(auth)
                 setTimeout(()=>{
                     navigate('/');
-                },2000)
+                },1000)
             }
         });
         return () => unsubscribe();
