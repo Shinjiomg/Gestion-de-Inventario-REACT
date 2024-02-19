@@ -28,10 +28,10 @@ export default function LogoutButton() {
             color='primary'
             variant="ghost"
             onClick={handleSignOut}
-            className="flex w-full justify-center rounded-md"
+            className="flex justify-center rounded-md w-40 ml-32"
             isLoading={loading}
         >
             {loading ? 'Cerrando sesión...' : 'Cerrar sesión'}
         </Button>
     );
-};
+}
