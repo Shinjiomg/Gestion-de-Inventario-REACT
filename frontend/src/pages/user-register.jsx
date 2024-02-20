@@ -68,7 +68,7 @@ export default function UserRegister() {
         return <LoadingAnimation />;
     }
     return (
-        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12" style={{ background: "#F8F8FF" }}>
+        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12">
             <div className="g-6 flex h-full flex-wrap items-center justify-center ">
                 <div className="mb-12 md:mb-0 md:w-8/12 lg:w-6/12">
                     <img

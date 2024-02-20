@@ -26,7 +26,6 @@ export default function LogoutButton() {
         <Button
             type="button"
             color='primary'
-            variant="ghost"
             onClick={handleSignOut}
             className="flex justify-center rounded-md w-40 ml-32"
             isLoading={loading}

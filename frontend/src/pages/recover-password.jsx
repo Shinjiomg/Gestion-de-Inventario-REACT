@@ -56,7 +56,7 @@ export default function RecoverPassword() {
         return <LoadingAnimation />;
     }
     return (
-        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0" style={{ background: "#F8F8FF" }}>
+        <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
             <div className="w-full p-6 md:mt-0 sm:max-w-md">
                 <Card
                     isBlurred
