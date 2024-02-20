@@ -115,16 +115,16 @@ export default function UserRegister() {
                                 <Button
                                     type="submit"
                                     color='primary'
-                                    className="flex w-full justify-center rounded-md bg-black"
+                                    className="flex w-full justify-center rounded-md"
                                     onClick={handleRegister}
                                     isLoading={loading}
                                 >
                                     {loading ? 'Registrando...' : 'Registrarse'}
                                 </Button>
-                                {error && <p className="text-red-500">{error}</p>}
-                                {successMessage && <p className="text-green-500">{successMessage}</p>}
+                                {error && <p className="text-danger">{error}</p>}
+                                {successMessage && <p className="text-success-500">{successMessage}</p>}
                                 <div className="text-md text-end">
-                                    <Link href="/">
+                                    <Link href="/" color="secondary" underline="hover">
                                         <span aria-hidden="true" />
                                         ¿Ya estás registrado? <span aria-hidden="true">&rarr;</span>
                                     </Link>

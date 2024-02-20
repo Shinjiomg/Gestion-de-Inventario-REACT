@@ -86,7 +86,7 @@ export default function RecoverPassword() {
                                 type="submit"
                                 color='primary'
                                 onClick={handleResetPassword}
-                                className="flex w-full justify-center rounded-md bg-black"
+                                className="flex w-full justify-center rounded-md"
                                 isLoading={loading}
                             >
                                 {loading ? 'Enviando correo...' : 'Restablecer contraseña'} {/* Cambia el texto del botón durante la carga */}
@@ -94,7 +94,7 @@ export default function RecoverPassword() {
                             {error && <p className="text-red-500">{error}</p>}
                             {successMessage && <p className="text-green-500">{successMessage}</p>}
                             <div className="text-sm text-end m-0">
-                                <Link href="/">
+                                <Link href="/" color="secondary" underline="hover">
                                     <span aria-hidden="true" />
                                     Regresar <span aria-hidden="true">&rarr;</span>
                                 </Link>

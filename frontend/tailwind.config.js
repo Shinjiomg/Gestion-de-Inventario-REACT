@@ -2,15 +2,27 @@
 
 const { nextui } = require("@nextui-org/react");
 module.exports = {
-  content: [
-    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
-    "./index.html", "./src/**/*.{js,jsx,ts,tsx}"
-  ],
+  content: ["./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}", "./index.html", "./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    fontFamily: {
+      sans: ['Montserrat', 'sans-serif']
+    }
   },
-  darkMode: "class",
   plugins: [
-    nextui(),
+    nextui({
+      themes: {
+        light: {
+          colors: {
+            primary: {
+              DEFAULT: "#000000",
+              foreground: "#ECEDEE",
+            },
+            secondary: {
+              DEFAULT: "blue"
+            },
+          },
+        }
+      }
+    }),
   ],
 }

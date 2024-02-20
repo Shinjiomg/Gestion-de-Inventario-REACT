@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { app } from '../../firebase';
-import { Button, Input, Card, CardBody } from '@nextui-org/react';
-import { Link } from 'react-router-dom';
+import { Button, Input, Card, CardBody, Link } from '@nextui-org/react';
+import {  } from 'react-router-dom';
 import LoadingAnimation from './elements/LoadingAnimation'
 
 export default function UserLogin() {
@@ -73,7 +73,7 @@ export default function UserLogin() {
         return <LoadingAnimation />;
     }
     return (
-        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 body-login" style={{ background: "#F8F8FF" }}>
+        <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 body-login">
             <div className="sm:mx-auto ">
                 <Card
                     isBlurred
@@ -116,7 +116,7 @@ export default function UserLogin() {
                                 </div>
                                 <div className="flex justify-end">
                                     <div className="text-center text-md text-gray-500">
-                                        <Link to="/recover" underline="always" className="font-normal text-blue-600 hover:text-indigo-500">
+                                        <Link href="/recover" underline="hover" className="font-normal" color="secondary">
                                             ¿Olvidaste tu contraseña?
                                         </Link>
                                     </div>
@@ -126,7 +126,7 @@ export default function UserLogin() {
                                         type="submit"
                                         onClick={handleSignIn}
                                         color='primary'
-                                        className="w-full justify-center rounded-md bg-black"
+                                        className="w-full justify-center rounded-md"
                                         isLoading={loading}
                                     >
                                         {loading ? 'Cargando...' : 'Iniciar Sesión'} {/* Cambia el texto del botón durante la carga */}
@@ -136,7 +136,7 @@ export default function UserLogin() {
                             </form>
                             <p className="mt-5 text-center text-md text-black">
                                 ¿No tienes cuenta?{' '}
-                                <Link className="font-normal text-blue-600 hover:text-indigo-500" underline="always" to="/register">
+                                <Link className="font-normal" color="secondary" underline="hover" href="/register">
                                     Regístrate aquí
                                 </Link>
                             </p>
