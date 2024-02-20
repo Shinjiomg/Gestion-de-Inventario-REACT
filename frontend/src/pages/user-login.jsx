@@ -81,10 +81,10 @@ export default function UserLogin() {
                     shadow="sm"
                 >
                     <CardBody className="p-8">
-                        <h1 className="text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
                             ¡Bienvenido de vuelta!&#128079;
                         </h1>
-                        <h2 className="text-center text-xl tracking-tight sm:text-xl"
+                        <h2 className="mt-2 text-center text-lg tracking-tight sm:text-xl"
                         >Inicia sesión con tu cuenta
                         </h2>
                         <div className="mt-6 flex flex-col items-center">
