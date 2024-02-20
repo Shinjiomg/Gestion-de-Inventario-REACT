@@ -6,7 +6,7 @@ import '../menu.css'
 export default function Menu() {
 
     return (
-        <div className='navbar border-solid border-black border ml-16 mt-16'>
+        <div className='navbar border-solid border-black border ml-16 mt-16 mb-16'>
             <div className='flex flex-row items-center justify-around pt-4 pl-4 pb-4 pr-4 uppercase'>
                 <Avatar src="https://i.pravatar.cc/150?u=a042581f4e29026704d" />
                 react
