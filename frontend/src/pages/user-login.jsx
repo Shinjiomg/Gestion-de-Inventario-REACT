@@ -140,7 +140,7 @@ export default function UserLogin() {
                                 <p className="text-center text-md">
                                     ¿No tienes cuenta?{' '}
                                     <Link href="/register">
-                                        <a className="font-normal text-secondary hover:underline mr-5">Regístrate aquí</a>
+                                        <span className="font-normal text-secondary hover:underline mr-5">Regístrate aquí</span>
                                     </Link>
                                 </p>
                                 <ThemeSwitcher />
