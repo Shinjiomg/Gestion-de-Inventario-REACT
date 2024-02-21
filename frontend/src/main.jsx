@@ -6,6 +6,7 @@ import { NextUIProvider } from '@nextui-org/react'
 const RoutingModule = lazy(() => import('./routes'));
 import { HelmetProvider } from 'react-helmet-async/lib';
 import LoadingIndicator from './pages/elements/LoadingAnimation';
+import {ThemeProvider as NextThemesProvider} from "next-themes";
 
 const delayLoading = () => {
   return new Promise(resolve => setTimeout(resolve, 1000));
@@ -16,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Suspense fallback={<LoadingIndicator />}>
         <NextUIProvider>
-          <RoutingModule />
+          <NextThemesProvider attribute="class">
+            <RoutingModule />
+          </NextThemesProvider>
         </NextUIProvider>
       </Suspense>
     </BrowserRouter>

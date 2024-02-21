@@ -64,7 +64,7 @@ export default function RecoverPassword() {
                     shadow="sm"
                 >
                     <CardBody className="p-8">
-                        <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-2">
+                        <h1 className="text-center text-3xl font-bold tracking-tight  sm:text-5xl mb-2">
                             ¿Olvidaste tu contraseña?
                         </h1>
                         <form className="mt-4 space-y-4 lg:mt-5 md:space-y-5">

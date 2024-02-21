@@ -84,7 +84,7 @@ export default function UserRegister() {
                         shadow="sm"
                     >
                         <CardBody className="p-8">
-                            <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl mb-5">
+                            <h1 className="text-center text-3xl font-bold tracking-tight sm:text-5xl mb-5">
                                 ¡Regístrate ahora!
                             </h1>
                             <form className="space-y-6">

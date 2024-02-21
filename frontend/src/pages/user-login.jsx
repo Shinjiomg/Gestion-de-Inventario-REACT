@@ -1,10 +1,11 @@
+// eslint-disable-next-line no-unused-vars
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { app } from '../../firebase';
 import { Button, Input, Card, CardBody, Link } from '@nextui-org/react';
-import {  } from 'react-router-dom';
 import LoadingAnimation from './elements/LoadingAnimation'
+import { ThemeSwitcher } from './elements/themeSwitcher';
 
 export default function UserLogin() {
     const navigate = useNavigate();
@@ -62,6 +63,7 @@ export default function UserLogin() {
                     break
                 case 'auth/too-many-requests':
                     setError('Haz realizado demasiados intentos, inténtalo de nuevo más tarde o también puedes restaurar tu contraseña desde "¿Olvidaste tu contraseña?".')
+                // eslint-disable-next-line no-fallthrough
                 default:
                     setError('Credenciales no válidas.');
             }
@@ -78,10 +80,10 @@ export default function UserLogin() {
                 <Card
                     isBlurred
                     className="border-none bg-background/60 dark:bg-default-100/50 max-w-[610px]"
-                    shadow="sm"
+                    shadow="md"
                 >
                     <CardBody className="p-8">
-                        <h1 className="text-center text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+                        <h1 className="text-center text-3xl font-bold tracking-tight  sm:text-4xl">
                             ¡Bienvenido de vuelta!&#128079;
                         </h1>
                         <h2 className="mt-2 text-center text-lg tracking-tight sm:text-xl"
@@ -134,12 +136,15 @@ export default function UserLogin() {
                                 </div>
                                 {error && <p className="text-red-500">{error}</p>}
                             </form>
-                            <p className="mt-5 text-center text-md text-black">
-                                ¿No tienes cuenta?{' '}
-                                <Link className="font-normal" color="secondary" underline="hover" href="/register">
-                                    Regístrate aquí
-                                </Link>
-                            </p>
+                            <div className="flex justify-between items-center mt-5">
+                                <p className="text-center text-md">
+                                    ¿No tienes cuenta?{' '}
+                                    <Link href="/register">
+                                        <a className="font-normal text-secondary hover:underline mr-5">Regístrate aquí</a>
+                                    </Link>
+                                </p>
+                                <ThemeSwitcher />
+                            </div>
                         </div>
                     </CardBody>
                 </Card>
