@@ -7,6 +7,9 @@ const RoutingModule = lazy(() => import('./routes'));
 import { HelmetProvider } from 'react-helmet-async/lib';
 import LoadingIndicator from './pages/elements/LoadingAnimation';
 import {ThemeProvider as NextThemesProvider} from "next-themes";
+import { Router, Routes, Route } from 'react-router-dom';
+import ManageInventory from './pages/manageInventory';
+import Statistics from './pages/statistics';
 
 const delayLoading = () => {
   return new Promise(resolve => setTimeout(resolve, 1000));
@@ -17,7 +20,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <BrowserRouter>
       <Suspense fallback={<LoadingIndicator />}>
         <NextUIProvider>
-          <NextThemesProvider attribute="class">
+          <NextThemesProvider attribute="class" defaultTheme='light'>
+            <Routes>
+              <Route path="/statistics" element={<Statistics />} />
+            </Routes>
             <RoutingModule />
           </NextThemesProvider>
         </NextUIProvider>

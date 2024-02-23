@@ -1,5 +1,8 @@
 import { Routes, Route } from 'react-router-dom';
 import { lazy, Suspense } from 'react';
+import Statistics from './pages/statistics';
+import ManageInventory from './pages/statistics';
+
 const RecoverPassword = lazy(async () => {
     return import('./pages/recover-password');
 });
@@ -30,6 +33,7 @@ export default function RoutingModule() {
                     <Route path="/register" element={<UserRegister />} />
                     <Route path="/recover" element={<RecoverPassword />} />
                     <Route path="*" element={<ErrorPage />} />
+                    <Route path="/manage-inventory" element={<ManageInventory />} />
                 </Routes>
             </Suspense>
         </>

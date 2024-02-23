@@ -9,7 +9,7 @@
     color: white;
 }
 
-button:focus {
+a:focus {
     color: white;
     background-color: rgb(124, 175, 182);
 }

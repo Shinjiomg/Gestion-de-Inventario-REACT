@@ -1,13 +1,15 @@
 import Menu from './elements/menu'
 import LogoutButton from './elements/log-out';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, Suspense, lazy } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from '../../firebase';
 import LoadingAnimation from './elements/LoadingAnimation'
-import Statistics from './elements/statistics'
 import { color } from 'framer-motion';
 import '../pages/menu.css';
+import Statistics from './statistics';
+import ManageInventory from './manageInventory';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 export default function IndexPage() {
     const navigate = useNavigate();
@@ -36,8 +38,13 @@ export default function IndexPage() {
                 <Menu />
                 <LogoutButton />
             </div>
-            <div className='user-statistics w-full mt-16'>
-                <Statistics />
+            <div className='content-dashboard'>
+                <div>
+                    <Routes>
+                        <Route path="/statistics" element={<Statistics />} />
+                        <Route path="/manage-inventory" element={<ManageInventory />} />
+                    </Routes>
+                </div>
             </div>
         </div>
     );
