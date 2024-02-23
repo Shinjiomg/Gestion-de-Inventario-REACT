@@ -1,7 +1,7 @@
 export default function Statistics () {
     return (
         <div>
-            <p>hola</p>
+            <p>hola como estás</p>
         </div>
     )
 }

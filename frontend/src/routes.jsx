@@ -1,25 +1,15 @@
 import { Routes, Route } from 'react-router-dom';
-import { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import Statistics from './pages/statistics';
-import ManageInventory from './pages/statistics';
+import RecoverPassword from './pages/recover-password';
 
-const RecoverPassword = lazy(async () => {
-    return import('./pages/recover-password');
-});
+import UserLogin from './pages/user-login';
+import UserRegister from './pages/user-register';
+import ErrorPage from './pages/error-page';
 
-import  UserLogin  from './pages/user-login'
 
-const UserRegister = lazy(async () => {
-    return import('./pages/user-register');
-});
+import IndexPage from './pages/index-page';
 
-const ErrorPage = lazy(async () => {
-    return import('./pages/error-page');
-});
-
-const IndexPage = lazy(async () => {
-    return import('./pages/index-page');
-});
 import LoadingIndicator from './pages/elements/LoadingAnimation';
 
 
@@ -29,11 +19,13 @@ export default function RoutingModule() {
             <Suspense fallback={<LoadingIndicator />}>
                 <Routes>
                     <Route path="/" element={<UserLogin />} />
-                    <Route path="/dashboard" element={<IndexPage />} />
+                    <Route path="/dashboard" element={<IndexPage />} >
+                        <Route path=":statistics" element={<Statistics />} />
+                        <Route path=":manage" element={<Statistics />} />
+                    </Route>
                     <Route path="/register" element={<UserRegister />} />
                     <Route path="/recover" element={<RecoverPassword />} />
                     <Route path="*" element={<ErrorPage />} />
-                    <Route path="/manage-inventory" element={<ManageInventory />} />
                 </Routes>
             </Suspense>
         </>
