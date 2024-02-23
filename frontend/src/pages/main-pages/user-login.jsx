@@ -2,10 +2,10 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
-import { app } from '../../firebase';
+import { app } from '../../../firebase';
 import { Button, Input, Card, CardBody, Link } from '@nextui-org/react';
-import LoadingAnimation from './elements/LoadingAnimation'
-import { ThemeSwitcher } from './elements/themeSwitcher';
+import LoadingAnimation from '../elements/LoadingAnimation'
+import { ThemeSwitcher } from '../elements/themeSwitcher';
 
 export default function UserLogin() {
     const navigate = useNavigate();

@@ -1,17 +1,13 @@
 import { Routes, Route } from 'react-router-dom';
 import { Suspense } from 'react';
-import Statistics from './pages/statistics';
-import RecoverPassword from './pages/recover-password';
-
-import UserLogin from './pages/user-login';
-import UserRegister from './pages/user-register';
-import ErrorPage from './pages/error-page';
-
-
-import IndexPage from './pages/index-page';
-
+import Statistics from './pages/dashboard-pages/statistics';
+import RecoverPassword from './pages/main-pages/recover-password'
+import UserLogin from './pages/main-pages/user-login';
+import UserRegister from './pages/main-pages/user-register';
+import ErrorPage from './pages/main-pages/error-page';
+import IndexPage from './pages/dashboard-pages/index-page';
 import LoadingIndicator from './pages/elements/LoadingAnimation';
-import ManageInventory from './pages/manageInventory';
+import ManageInventory from './pages/dashboard-pages/manageInventory';
 
 export default function RoutingModule() {
     return (

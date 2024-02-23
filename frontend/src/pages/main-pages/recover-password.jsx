@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
-import { app } from '../../firebase'
+import { app } from '../../../firebase'
 import { getAuth, sendPasswordResetEmail, onAuthStateChanged } from 'firebase/auth';
 import { Button, Input, Link, Card, CardBody } from '@nextui-org/react';
-import LoadingAnimation from './elements/LoadingAnimation'
+import LoadingAnimation from '../elements/LoadingAnimation'
 
 export default function RecoverPassword() {
     const [email, setEmail] = useState('');
