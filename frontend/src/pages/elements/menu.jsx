@@ -1,7 +1,7 @@
-import { Avatar, Button, Navbar } from "@nextui-org/react";
+import { Avatar } from "@nextui-org/react";
 import { userIcon, receiptIcon, statisticsIcon, shopingIcon, registerIcon } from '../../assets/icons';
 import React from 'react';
-import '../menu.css'
+import '../styles/menu.css'
 import { Link } from "react-router-dom";
 
 export default function Menu() {

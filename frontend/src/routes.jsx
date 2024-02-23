@@ -11,7 +11,7 @@ import ErrorPage from './pages/error-page';
 import IndexPage from './pages/index-page';
 
 import LoadingIndicator from './pages/elements/LoadingAnimation';
-
+import ManageInventory from './pages/manageInventory';
 
 export default function RoutingModule() {
     return (
@@ -21,7 +21,7 @@ export default function RoutingModule() {
                     <Route path="/" element={<UserLogin />} />
                     <Route path="/dashboard" element={<IndexPage />} >
                         <Route path=":statistics" element={<Statistics />} />
-                        <Route path=":manage" element={<Statistics />} />
+                        <Route path=":manage" element={<ManageInventory />} />
                     </Route>
                     <Route path="/register" element={<UserRegister />} />
                     <Route path="/recover" element={<RecoverPassword />} />

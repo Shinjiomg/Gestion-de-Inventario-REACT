@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from '../../firebase';
 import LoadingAnimation from './elements/LoadingAnimation'
-import '../pages/menu.css';
+import './styles/menu.css'
 import Statistics from './statistics';
 import ManageInventory from './manageInventory';
 import { Routes, Route } from 'react-router-dom';
