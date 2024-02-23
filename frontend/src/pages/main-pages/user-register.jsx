@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Button, Input, Link, Card, CardBody } from "@nextui-org/react";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth';
-import { app } from '../../firebase';
+import { app } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import LoadingAnimation from './elements/LoadingAnimation'
+import LoadingAnimation from '../elements/LoadingAnimation'
 
 export default function UserRegister() {
     const [email, setEmail] = useState('');

@@ -1,10 +1,10 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import { getAuth } from 'firebase/auth';
-import { app } from '../../firebase';
+import { app } from '../../../firebase';
 import { Button } from "@nextui-org/button";
-import LoadingAnimation from './elements/LoadingAnimation'
-import NotFoundAnimation from './elements/not-found-animation'
+import LoadingAnimation from '../elements/LoadingAnimation'
+import NotFoundAnimation from '../elements/not-found-animation'
 
 export default function ErrorPage() {
   const navigate = useNavigate();
