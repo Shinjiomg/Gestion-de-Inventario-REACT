@@ -1,10 +1,13 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
-import { app } from '../../../firebase'
+import { app } from '../../../firebase';
 import { Button } from '@nextui-org/react';
+import { TbLogout2 } from 'react-icons/tb';
 
-export default function LogoutButton() {
+export default function LogoutButton({ minimized }) {
     const navigate = useNavigate();
     const auth = getAuth(app);
     const [error, setError] = useState(null);
@@ -16,7 +19,7 @@ export default function LogoutButton() {
             await signOut(auth);
             navigate('/');
         } catch (error) {
-            setError(error.message)
+            setError(error.message);
         } finally {
             setLoading(false);
         }
@@ -25,12 +28,15 @@ export default function LogoutButton() {
     return (
         <Button
             type="button"
-            color='primary'
+            startContent={!minimized && <TbLogout2 />}
+            color="primary"
             onClick={handleSignOut}
-            className="flex justify-center rounded-md w-40 ml-32"
+            className={`flex justify-center rounded-md ${minimized ? 'w-8' : 'w-full'}`} // Ajusta la anchura del botón
             isLoading={loading}
+            style={{ padding: minimized ? '0.5rem' : '' }} // Ajusta el padding si está minimizado
+            isIconOnly={minimized}
         >
-            {loading ? 'Cerrando sesión...' : 'Cerrar sesión'}
+            {minimized ? <TbLogout2 /> : (loading ? 'Cerrando sesión...' : 'Cerrar sesión')}
         </Button>
     );
 }

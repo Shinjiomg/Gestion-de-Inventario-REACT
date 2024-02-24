@@ -9,6 +9,7 @@ import Statistics from './statistics';
 import Sales from './sales'
 import ManageInventory from './manageInventory';
 import { Routes, Route } from 'react-router-dom';
+import ErrorPage from '../main-pages/error-page';
 
 export default function IndexPage() {
     const navigate = useNavigate();
@@ -35,9 +36,11 @@ export default function IndexPage() {
             </div>
             <div className='p-7'>
                 <Routes>
+                    <Route path="/" element={<Statistics />} />
                     <Route path="/statistics" element={<Statistics />} />
                     <Route path="/manage" element={<ManageInventory />} />
                     <Route path="/sales" element={<Sales />} />
+                    <Route path="*" element={<ErrorPage />} />
                 </Routes>
             </div>
         </div >
