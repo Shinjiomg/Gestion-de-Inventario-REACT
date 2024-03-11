@@ -46,7 +46,7 @@ const Menus = [
         submenu: true,
         submenuItems: [
             {
-                title: "Gestión de usuarios",
+                title: "Gestión de compras",
                 path: "*"
             },
         ],

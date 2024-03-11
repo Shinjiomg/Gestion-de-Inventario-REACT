@@ -36,7 +36,7 @@ export const UserLogin = () => {
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             const user = userCredential.user;
             if (user.emailVerified) {
-                navigate('/dashboard'); // Redirige al usuario a la página de inicio de sesión si su correo electrónico está verificado
+                navigate('/dashboard');
             } else {
                 setError('Debes verificar tu correo electrónico antes de iniciar sesión.');
             }
@@ -130,7 +130,7 @@ export const UserLogin = () => {
                                         className="w-full justify-center rounded-md"
                                         isLoading={loading}
                                     >
-                                        {loading ? 'Cargando...' : 'Iniciar Sesión'} {/* Cambia el texto del botón durante la carga */}
+                                        {loading ? 'Cargando...' : 'Iniciar Sesión'}
                                     </Button>
                                 </div>
                                 {error && <p className="text-red-500">{error}</p>}

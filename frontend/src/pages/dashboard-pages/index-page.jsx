@@ -2,10 +2,8 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Routes, Route } from 'react-router-dom';
-
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from '../../../firebase';
-
 import { MenuElement, LoadingAnim } from '../elements';
 import { ErrorPage } from '../main-pages'
 import { ManageInventory, Statistics, Sales } from '../dashboard-pages';
@@ -29,11 +27,11 @@ export const IndexPage = () => {
         return <LoadingAnim />;
     }
     return (
-        <div className='flex'>
+        <div className='flex h-screen'>
             <div>
                 <MenuElement />
             </div>
-            <div className='p-7'>
+            <div className='w-full'>
                 <Routes>
                     <Route path="/" element={<Statistics />} />
                     <Route path="/statistics" element={<Statistics />} />

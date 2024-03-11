@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { Suspense } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
@@ -6,7 +7,6 @@ import RoutingModule from './routes';
 import { HelmetProvider } from 'react-helmet-async/lib';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { BrowserRouter } from 'react-router-dom';
-
 import { LoadingAnim } from './pages';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import { app } from '../../../firebase'
@@ -89,7 +90,7 @@ export const RecoverPassword = () => {
                                 className="flex w-full justify-center rounded-md"
                                 isLoading={loading}
                             >
-                                {loading ? 'Enviando correo...' : 'Restablecer contraseña'} {/* Cambia el texto del botón durante la carga */}
+                                {loading ? 'Enviando correo...' : 'Restablecer contraseña'}
                             </Button>
                             {error && <p className="text-red-500">{error}</p>}
                             {successMessage && <p className="text-green-500">{successMessage}</p>}
