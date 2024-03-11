@@ -3,9 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { app } from '../../../firebase'
 import { getAuth, sendPasswordResetEmail, onAuthStateChanged } from 'firebase/auth';
 import { Button, Input, Link, Card, CardBody } from '@nextui-org/react';
-import LoadingAnimation from '../elements/LoadingAnimation'
+import { LoadingAnim } from '../elements'
 
-export default function RecoverPassword() {
+export const RecoverPassword = () => {
     const [email, setEmail] = useState('');
     const [error, setError] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -53,7 +53,7 @@ export default function RecoverPassword() {
         }
     };
     if (!authChecked) {
-        return <LoadingAnimation />;
+        return <LoadingAnim />;
     }
     return (
         <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">

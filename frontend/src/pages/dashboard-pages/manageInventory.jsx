@@ -1,7 +1,6 @@
-export default function ManageInventory () {
-    return (
-        <div>
-            <p>manage inventory</p>
-        </div>
-    )
+
+export const ManageInventory = () => {
+  return (
+    <div>ManageInventory</div>
+  )
 }

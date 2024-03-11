@@ -1,17 +1,16 @@
 /* eslint-disable no-unused-vars */
-import Menu from '../elements/menu'
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
+
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { app } from '../../../firebase';
-import LoadingAnimation from '../elements/LoadingAnimation'
-import Statistics from './statistics';
-import Sales from './sales'
-import ManageInventory from './manageInventory';
-import { Routes, Route } from 'react-router-dom';
-import ErrorPage from '../main-pages/error-page';
 
-export default function IndexPage() {
+import { MenuElement, LoadingAnim } from '../elements';
+import { ErrorPage } from '../main-pages'
+import { ManageInventory, Statistics, Sales } from '../dashboard-pages';
+
+export const IndexPage = () => {
     const navigate = useNavigate();
     const auth = getAuth(app);
     const [authChecked, setAuthChecked] = useState(false);
@@ -27,12 +26,12 @@ export default function IndexPage() {
     }, [auth, navigate]);
 
     if (!authChecked) {
-        return <LoadingAnimation />;
+        return <LoadingAnim />;
     }
     return (
         <div className='flex'>
             <div>
-                <Menu />
+                <MenuElement />
             </div>
             <div className='p-7'>
                 <Routes>
@@ -44,5 +43,5 @@ export default function IndexPage() {
                 </Routes>
             </div>
         </div >
-    );
+    )
 }

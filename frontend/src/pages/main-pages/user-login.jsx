@@ -4,10 +4,9 @@ import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from 'firebase/auth';
 import { app } from '../../../firebase';
 import { Button, Input, Card, CardBody, Link } from '@nextui-org/react';
-import LoadingAnimation from '../elements/LoadingAnimation'
-import { ThemeSwitcher } from '../elements/themeSwitcher';
+import { LoadingAnim, ThemeSwitcher } from '../elements'
 
-export default function UserLogin() {
+export const UserLogin = () => {
     const navigate = useNavigate();
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -72,7 +71,7 @@ export default function UserLogin() {
         }
     };
     if (!authChecked) {
-        return <LoadingAnimation />;
+        return <LoadingAnim />;
     }
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12 lg:px-8 body-login">
@@ -151,5 +150,4 @@ export default function UserLogin() {
             </div>
         </div >
     )
-
 }

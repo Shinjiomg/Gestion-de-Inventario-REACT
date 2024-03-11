@@ -3,9 +3,9 @@ import { Button, Input, Link, Card, CardBody } from "@nextui-org/react";
 import { getAuth, createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, signOut } from 'firebase/auth';
 import { app } from "../../../firebase";
 import { useNavigate } from "react-router-dom";
-import LoadingAnimation from '../elements/LoadingAnimation'
+import { LoadingAnim } from '../elements'
 
-export default function UserRegister() {
+export const UserRegister = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [successMessage, setSuccessMessage] = useState('');
@@ -65,7 +65,7 @@ export default function UserRegister() {
     };
 
     if (!authChecked) {
-        return <LoadingAnimation />;
+        return <LoadingAnim />;
     }
     return (
         <div className="flex min-h-screen flex-1 flex-col justify-center px-6 py-12">
@@ -135,5 +135,5 @@ export default function UserRegister() {
                 </div>
             </div >
         </div >
-    );
+    )
 }

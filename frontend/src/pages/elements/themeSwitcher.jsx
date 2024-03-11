@@ -5,7 +5,8 @@ import { Switch } from "@nextui-org/react";
 import { MoonIcon } from "../../assets/icons/MoonIcon";
 import { SunIcon } from "../../assets/icons/SunIcon"
 
-export function ThemeSwitcher() {
+
+export const ThemeSwitcher = () => {
     const [mounted, setMounted] = useState(false);
     const { theme, setTheme } = useTheme();
 
@@ -22,7 +23,6 @@ export function ThemeSwitcher() {
             setTheme('light');
         }
     };
-
     return (
         <Switch
             defaultSelected={theme === 'light'}
@@ -32,5 +32,5 @@ export function ThemeSwitcher() {
             startContent={<SunIcon />}
             endContent={<MoonIcon />}
         />
-    );
+    )
 }

@@ -7,7 +7,7 @@ import { BiSolidPurchaseTagAlt } from "react-icons/bi";
 import { Avatar } from "@nextui-org/react";
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-import LogoutButton from "./log-out";
+import LogoutButton from "./LogOut";
 
 const Menus = [
     {
@@ -84,7 +84,9 @@ const Menus = [
         ],
     },
 ];
-export default function Menu() {
+
+
+export const MenuElement = () => {
     const [open, setOpen] = useState(true)
     const [submenuOpen, setSubmenuOpen] = useState(Array(Menus.length).fill(false));
     const handleSubmenuToggle = (index) => {

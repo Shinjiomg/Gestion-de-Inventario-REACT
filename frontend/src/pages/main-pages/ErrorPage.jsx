@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { getAuth } from 'firebase/auth';
 import { app } from '../../../firebase';
 import { Button } from "@nextui-org/button";
-import LoadingAnimation from '../elements/LoadingAnimation'
-import NotFoundAnimation from '../elements/not-found-animation'
+import { NotFoundAnim } from '../elements'
 
-export default function ErrorPage() {
+export const ErrorPage = () => {
+  
   const navigate = useNavigate();
   const auth = getAuth(app);
 
@@ -18,7 +18,6 @@ export default function ErrorPage() {
       navigate('/');
     }
   };
-
   return (
     <div className="container min-h-screen mx-auto flex flex-col items-center justify-center lg:flex-row">
       <div className="w-full lg:w-1/2 text-center">
@@ -34,9 +33,8 @@ export default function ErrorPage() {
         </p>
       </div>
       <div>
-        <NotFoundAnimation />
+        <NotFoundAnim />
       </div>
     </div>
-
-  );
+  )
 }

@@ -4,15 +4,15 @@ import './index.css'
 import { NextUIProvider } from '@nextui-org/react'
 import RoutingModule from './routes';
 import { HelmetProvider } from 'react-helmet-async/lib';
-import LoadingIndicator from './pages/elements/LoadingAnimation';
 import { ThemeProvider as NextThemesProvider } from "next-themes";
 import { BrowserRouter } from 'react-router-dom';
 
+import { LoadingAnim } from './pages';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <HelmetProvider>
     <BrowserRouter>
-      <Suspense fallback={<LoadingIndicator />}>
+      <Suspense fallback={<LoadingAnim />}>
         <NextUIProvider>
           <NextThemesProvider attribute="class" defaultTheme='light'>
             <RoutingModule />
