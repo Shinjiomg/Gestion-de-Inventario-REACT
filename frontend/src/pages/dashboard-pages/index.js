@@ -1,4 +1,4 @@
 export * from './index-page'
 export * from './manageInventory'
-export * from './Sales'
+export * from './sales'
 export * from './statistics'
